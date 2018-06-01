@@ -1,2 +1,4 @@
 *.DS_Store
 *test.py
+*/__pycache__/
+chapter6/stanford-corenlp-full-2018-02-27
