@@ -10,9 +10,17 @@ from ex41 import formatter
 
 if __name__ == "__main__":
     sentences = formatter("neko.txt.cabocha")
-    pairs = [[sentence, chunk, [sentence[src] for src in chunk.srcs if sentence[src].isSahenWo()]] for sentence in sentences for chunk in sentence if chunk.srcs and chunk.isContainVerb()]
+    pairs = [
+        [sentence, vChunk, [sentence[src] for src in vChunk.srcs if sentence[src].isSahenWo()]]
+        for sentence in sentences for vChunk in sentence
+        if vChunk.srcs and vChunk.isContainVerb()
+    ]
     pairs = [pair[:2] + [sahenWo] for pair in pairs if pair[2] for sahenWo in pair[2]]
-    pairs = [[sahenWo.getSurface() + vChunk.getPredicate(), [[sentence[src].getPostposition(), sentence[src].getSurface()] for src in sahenWo.srcs if sentence[src].isContainPostposition()]] for [sentence, vChunk, sahenWo] in pairs if sahenWo.srcs]
+    pairs = [
+        [sahenWo.getSurface() + vChunk.getPredicate(), [[sentence[src].getPostposition(), sentence[src].getSurface()] for src in sahenWo.srcs if sentence[src].isContainPostposition()]]
+        for [sentence, vChunk, sahenWo] in pairs
+        if sahenWo.srcs
+    ]
     pairs = [[pair[0], sorted(pair[1])] for pair in pairs if pair[1]]
     pairs = [[pair[0], [p[0] for p in pair[1]], [p[1] for p in pair[1]]] for pair in pairs]
     for pair in pairs:

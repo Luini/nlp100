@@ -12,7 +12,11 @@ from ex41 import formatter
 
 if __name__ == "__main__":
     sentences = formatter("neko.txt.cabocha")
-    pairs = [[chunk.getPredicate(), [sentence[src].getPostposition() for src in chunk.srcs if sentence[src].isContainPostposition()]] for sentence in sentences for chunk in sentence if chunk.srcs and chunk.isContainVerb()]
+    pairs = [
+        [chunk.getPredicate(), [sentence[src].getPostposition() for src in chunk.srcs if sentence[src].isContainPostposition()]]
+        for sentence in sentences for chunk in sentence
+        if chunk.srcs and chunk.isContainVerb()
+    ]
     pairs = [[pair[0], sorted(pair[1])] for pair in pairs if pair[1]]
     for pair in pairs:
         print("\t".join([pair[0], " ".join(pair[1])]))

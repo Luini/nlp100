@@ -15,6 +15,9 @@ def makePaths(sentence):
 
 if __name__ == "__main__":
     sentences = formatter("neko.txt.cabocha")
-    paths = makePaths(sentences[7])
+    sentence = sentences[5]
+    print([chunk.getSurface() for chunk in sentence])
+
+    paths = makePaths(sentence)
     for path in paths:
         print(" -> ".join([chunk.getSurface() for chunk in path]))
