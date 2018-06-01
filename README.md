@@ -6,5 +6,7 @@ OS : macOS High Sierra 10.13.4
   * redquests 2.18.4
   * matplotlib 2.2.2
   * pydot-ng 1.0.0
+  * stemming 1.0.1
 * mecab 0.996
 * cabocha 0.69
+* Stanford CoreNLP 3.9.1
