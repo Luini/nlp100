@@ -6,7 +6,7 @@ if __name__ == "__main__":
     NNPs = [
         token.find("word").text
         for token in tokens
-        if token.find("POS").text == "NNP"
+        if token.find("NER").text == "PERSON"
     ]
 
     print("\n".join(NNPs))
