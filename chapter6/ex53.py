@@ -4,8 +4,8 @@ import re
 def getTokens(xmlFileName):
     tree = ElementTree.parse(xmlFileName)
     root = tree.getroot()
-    sentences = root.find("document").find("sentences").findall("sentence")
-    sentences = [sentence.find("tokens").findall("token") for sentence in sentences]
+    sentences = root.findall("document/sentences/sentence")
+    sentences = [sentence.findall("tokens/token") for sentence in sentences]
     tokens = [token for sentence in sentences for token in sentence]
     return tokens
 
