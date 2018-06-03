@@ -1,12 +1,12 @@
-from ex53 import getTokens
+import nlp
 
 if __name__ == "__main__":
-    tokens = getTokens("nlp.txt.xml")
+    coreNLP = nlp.CoreNLP("nlp.txt.xml")
 
-    NNPs = [
-        token.find("word").text
-        for token in tokens
-        if token.find("NER").text == "PERSON"
+    persons = [
+        token.word
+        for sentence in coreNLP.sentences for token in sentence
+        if token.ner == "PERSON"
     ]
 
-    print("\n".join(NNPs))
+    print("\n".join(persons))

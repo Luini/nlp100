@@ -1,22 +1,14 @@
-from xml.etree import ElementTree
-import re
-
-def getTokens(xmlFileName):
-    tree = ElementTree.parse(xmlFileName)
-    root = tree.getroot()
-    sentences = root.findall("document/sentences/sentence")
-    sentences = [sentence.findall("tokens/token") for sentence in sentences]
-    tokens = [token for sentence in sentences for token in sentence]
-    return tokens
+import nlp
 
 if __name__ == "__main__":
-    tokens = getTokens("nlp.txt.xml")
-    # 記号を除外する
-    wordPosPattern = re.compile("[A-Z][A-Z][A-Z]?")
+    coreNLP = nlp.CoreNLP("nlp.txt.xml")
+    sentences = [
+        nlp.Token.getNoSymbolTokens(sentence) # 記号を除外する
+        for sentence in coreNLP.sentences
+    ]
     words = [
-        token.find("word").text
-        for token in tokens
-        if wordPosPattern.match(token.find("POS").text) and token.find("POS").text != "POS"
+        token.word
+        for sentence in sentences for token in sentence
     ]
 
     print("\n".join(words))
