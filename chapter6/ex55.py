@@ -5,7 +5,7 @@ if __name__ == "__main__":
 
     persons = [
         token.word
-        for sentence in coreNLP.sentences for token in sentence
+        for sentence in coreNLP.getSentences() for token in sentence
         if token.ner == "PERSON"
     ]
 

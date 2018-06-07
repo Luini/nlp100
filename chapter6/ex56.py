@@ -3,8 +3,8 @@ import re
 
 if __name__ == "__main__":
     coreNLP = nlp.CoreNLP("nlp.txt.xml")
-    sentences = coreNLP.sentences
-    for coreference in coreNLP.coreferences:
+    sentences = coreNLP.getSentences()
+    for coreference in coreNLP.getCoreferences():
         for mention in coreference.mentions:
             index = mention.sentenceId-1
             start = mention.start-1
