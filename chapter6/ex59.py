@@ -23,7 +23,7 @@ class Node:
         return NPs
 
     @classmethod
-    def createTree(cls, parseString, startPosition):
+    def createTree(cls, parseString, startPosition=0):
         position = startPosition+1 # 先頭は '(' のはずなので除外
         type = ""
         while parseString[position] != ' ':
@@ -50,6 +50,6 @@ if __name__ == "__main__":
     coreNLP = nlp.CoreNLP("nlp.txt.xml")
     parses = coreNLP.getParses()
     for parse in parses:
-        (tree, end) = Node.createTree(parse, 0)
+        (tree, end) = Node.createTree(parse)
         NPs = tree.getNPs()
         print("\n".join([coreNlpTextFormatter(NP) for NP in NPs]), end='\n\n')

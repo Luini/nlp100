@@ -11,7 +11,7 @@ if __name__ == "__main__":
             results += [
                 (nsubj.dependentText, nsubj.governorText, dobj.dependentText)
                 for dobj in dobjs
-                if nsubj.governorText == dobj.governorText
+                if nsubj.governor == dobj.governor
             ]
 
     print("\n".join(["\t".join(result) for result in results]))

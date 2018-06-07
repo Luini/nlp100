@@ -1,7 +1,7 @@
 import nlp
 import re
 
-# coreNLP の記号やスペースをいい感じに整形する関数
+# Stanford Core NLPの解析結果の記号やスペースをいい感じに整形する関数
 def coreNlpTextFormatter(nlpText):
     nlpText = nlpText.replace("-LRB- ", "(")
     nlpText = nlpText.replace(" -RRB-", ")")
