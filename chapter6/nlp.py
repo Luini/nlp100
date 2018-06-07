@@ -29,6 +29,10 @@ class CoreNLP:
         ]
         return dependencies
 
+    def getParses(self):
+        parseElements = self.document.findall("sentences/sentence/parse")
+        return [parseElement.text for parseElement in parseElements]
+
     def createDigraph(self, sentenceId, outputFileName):
         graph = pydot.Dot(graph_type="digraph")
         # ノード追加

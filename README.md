@@ -7,6 +7,7 @@ OS : macOS High Sierra 10.13.4
   * matplotlib 2.2.2
   * pydot-ng 1.0.0
   * stemming 1.0.1
+  * regex 2018.6.6
 * mecab 0.996
 * cabocha 0.69
 * Stanford CoreNLP 3.9.1

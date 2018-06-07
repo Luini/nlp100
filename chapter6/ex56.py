@@ -1,6 +1,19 @@
 import nlp
 import re
 
+# coreNLP の記号やスペースをいい感じに整形する関数
+def coreNlpTextFormatter(nlpText):
+    nlpText = nlpText.replace("-LRB- ", "(")
+    nlpText = nlpText.replace(" -RRB-", ")")
+    nlpText = nlpText.replace(" - ", "-")
+    nlpText = nlpText.replace("`", "\'")
+    nlpText = re.sub("\' (.*?) \'", lambda x: "\'{}\'".format(x.group(1)), nlpText)
+    nlpText = re.sub("(``)|(\'\')", "\"", nlpText)
+    nlpText = re.sub("\" (.*?) \"", lambda x: "\"{}\"".format(x.group(1)), nlpText)
+    nlpText = re.sub(" ([,.;:?!])", lambda x: x.group(1), nlpText)
+    return nlpText
+
+
 if __name__ == "__main__":
     coreNLP = nlp.CoreNLP("nlp.txt.xml")
     sentences = coreNLP.getSentences()
@@ -13,14 +26,5 @@ if __name__ == "__main__":
             sentences[index][end].word += ")]"
 
     text = "\n".join([" ".join([token.word for token in sentence]) for sentence in sentences])
-    # 整形
-    text = text.replace("-LRB- ", "(")
-    text = text.replace(" -RRB-", ")")
-    text = text.replace(" - ", "-")
-    text = text.replace("`", "\'")
-    text = re.sub("\' (.*?) \'", lambda x: "\'{}\'".format(x.group(1)), text)
-    text = re.sub("(``)|(\'\')", "\"", text)
-    text = re.sub("\" (.*?) \"", lambda x: "\"{}\"".format(x.group(1)), text)
-    text = re.sub(" ([,.;:?!])", lambda x: x.group(1), text)
-
+    text = coreNlpTextFormatter(text)
     print(text)
